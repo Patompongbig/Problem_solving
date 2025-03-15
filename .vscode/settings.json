@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "list": "cpp",
+        "iostream": "cpp",
+        "vector": "cpp",
+        "xutility": "cpp",
+        "map": "cpp",
+        "xstring": "cpp",
+        "xtree": "cpp",
+        "utility": "cpp",
+        "format": "cpp",
+        "initializer_list": "cpp",
+        "algorithm": "cpp",
+        "set": "cpp",
+        "iosfwd": "cpp",
+        "deque": "cpp",
+        "compare": "cpp",
+        "xstddef": "cpp"
+    }
+}

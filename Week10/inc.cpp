@@ -1,41 +1,41 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-int main(){
-    int n, max_streak, tmp = 0, max_num, streak_now;
-    vector<vector<int>> streak;
-    vector<int> current;
-    vector<int> track;
-
+int main() {
+    int n, length = 1, end = 0;
     cin >> n;
-    for (int i = 0; i < n; i++){
-        int value;
-        cin >> value;
+    
+    vector<int> value(n);
+    for (int i = 0; i < n; i++) {
+        cin >> value[i];
+    }
 
-        if(i == 0){
-            max_streak = 1;
-            max_num = value;
-            streak_now = 1;
-            streak.push_back({value});
-            current = streak[i];
-        }
-
-        else{
-            if (value > max_num){
-                tmp = max_num;
-                max_num = value;
-                streak_now++;
-                current.push_back(value);
-                streak.push_back(current);
-            }
-            else{
-
+    vector<int> dp(n, 1);
+    vector<int> prev(n, -1); 
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (value[i] > value[j] && dp[i] < dp[j] + 1) {
+                dp[i] = dp[j] + 1;
+                prev[i] = j;
             }
         }
-
-        if (streak_now > max_streak){
-            max_streak = streak_now;
+        if (dp[i] > length) {
+            length = dp[i];
+            end = i;
         }
+    }
+
+    vector<int> answer;
+    for (int i = end; i != -1; i = prev[i]) {
+        answer.push_back(value[i]);
+    }
+    
+    reverse(answer.begin(), answer.end());
+
+    cout << length << '\n';
+    for (int i = 0; i < length; i++) {
+        cout << answer[i] << " ";
     }
 }

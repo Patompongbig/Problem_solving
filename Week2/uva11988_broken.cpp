@@ -1,21 +1,47 @@
 #include <iostream>
+#include <deque>
 #include <string>
-#include <list>
+
 using namespace std;
 
-string check_beiju(string &text){
-    if (text.empty()){
-        return;
+int main() {
+    string line;
+    while (getline(cin, line)) {
+        deque<string> segments;
+        string buffer;
+        bool insert_front = false;
+
+        for (char c : line) {
+            if (c == '[' || c == ']') {
+                if (!buffer.empty()) {
+                    if (insert_front) {
+                        segments.push_front(buffer);
+                    } else {
+                        segments.push_back(buffer);
+                    }
+                    buffer.clear();
+                }
+                insert_front = (c == '[');
+            } else {
+                buffer += c;
+            }
+        }
+
+        if (!buffer.empty()) {
+            if (insert_front) {
+                segments.push_front(buffer);
+            } else {
+                segments.push_back(buffer);
+            }
+        }
+
+        string result;
+        for (const auto& seg : segments) {
+            result += seg;
+        }
+
+        cout << result << '\n';
     }
-    
 
-    return text;
-}
-
-int main(){
-    string text;
-    cin >> text;
-
-    text = check_beiju(text);
-    cout << text;
+    return 0;
 }

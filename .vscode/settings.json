@@ -15,6 +15,10 @@
         "iosfwd": "cpp",
         "deque": "cpp",
         "compare": "cpp",
-        "xstddef": "cpp"
+        "xstddef": "cpp",
+        "ostream": "cpp",
+        "xiosbase": "cpp",
+        "queue": "cpp",
+        "type_traits": "cpp"
     }
 }
